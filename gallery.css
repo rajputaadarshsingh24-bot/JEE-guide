@@ -1,0 +1,151 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f7fb;
+}
+
+
+header{
+    text-align:center;
+    padding:40px 20px;
+}
+
+
+header h1{
+    font-size:42px;
+    color:#1e3a8a;
+}
+
+
+header p{
+    margin-top:10px;
+    color:#555;
+    font-size:18px;
+}
+
+
+
+/* Pinterest Masonry */
+
+.gallery{
+
+    columns:4 250px;
+    column-gap:20px;
+    padding:30px;
+
+}
+
+
+.card{
+
+    margin-bottom:20px;
+    break-inside:avoid;
+    overflow:hidden;
+    border-radius:18px;
+    background:white;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+
+    transition:0.3s;
+}
+
+
+.card img{
+
+    width:100%;
+    display:block;
+    cursor:pointer;
+
+    transition:0.4s;
+
+}
+
+
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+
+.card img:hover{
+
+    transform:scale(1.05);
+
+}
+
+
+
+/* Image Viewer */
+
+#viewer{
+
+    display:none;
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,0.85);
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:1000;
+
+}
+
+
+
+#viewer img{
+
+    max-width:90%;
+    max-height:90%;
+
+    border-radius:15px;
+
+}
+
+
+
+#close{
+
+    position:absolute;
+
+    top:30px;
+    right:50px;
+
+    font-size:50px;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+
+
+/* Mobile */
+
+@media(max-width:600px){
+
+    header h1{
+        font-size:30px;
+    }
+
+    .gallery{
+        columns:2 150px;
+        padding:15px;
+    }
+
+}
