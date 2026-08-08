@@ -1,69 +1,103 @@
-// =========================
-// HERO FADE
-// =========================
+/* =========================
+   JEE GUIDE - HOME PAGE JS
+========================= */
 
-const hero = document.querySelector(".hero-content");
+document.addEventListener("DOMContentLoaded", () => {
 
-hero.style.opacity = "0";
-hero.style.transform = "translateY(40px)";
+    /* -------------------------
+       Hero entrance animation
+    ------------------------- */
 
-window.addEventListener("load", () => {
+    const heroContent = document.querySelector(".hero-content");
 
-    hero.style.transition = "1s ease";
+    if (heroContent) {
+        heroContent.style.opacity = "0";
+        heroContent.style.transform = "translateY(25px)";
 
-    hero.style.opacity = "1";
+        setTimeout(() => {
 
-    hero.style.transform = "translateY(0)";
+            heroContent.style.transition =
+                "opacity 1s ease, transform 1s ease";
 
-});
+            heroContent.style.opacity = "1";
+            heroContent.style.transform = "translateY(0)";
 
-
-// =========================
-// NAVBAR EFFECT
-// =========================
-
-const nav = document.querySelector("nav");
-
-window.addEventListener("scroll", () => {
-
-    if(window.scrollY > 50){
-
-        nav.style.background = "rgba(0,33,71,.9)";
-        nav.style.backdropFilter = "blur(10px)";
-        nav.style.boxShadow = "0 5px 20px rgba(0,0,0,.3)";
-
+        }, 150);
     }
 
-    else{
 
-        nav.style.background = "transparent";
-        nav.style.boxShadow = "none";
+    /* -------------------------
+       Floating JEE logo
+    ------------------------- */
 
+    const logo = document.querySelector(".floating-jee-logo");
+
+    if (logo) {
+
+        let position = 0;
+        let direction = 1;
+
+        function animateLogo() {
+
+            position += 0.015 * direction;
+
+            if (position > 1) {
+                direction = -1;
+            }
+
+            if (position < -1) {
+                direction = 1;
+            }
+
+            logo.style.setProperty(
+                "--logo-move",
+                `${position}px`
+            );
+
+            requestAnimationFrame(animateLogo);
+        }
+
+        animateLogo();
     }
 
-});
 
+    /* -------------------------
+       Navigation link effect
+    ------------------------- */
 
-// =========================
-// BUTTON PULSE
-// =========================
+    const navLinks = document.querySelectorAll("nav a");
 
-const button = document.querySelector(".hero-content a");
+    navLinks.forEach(link => {
 
-setInterval(() => {
+        link.addEventListener("click", () => {
 
-    button.animate([
+            link.style.transform = "scale(0.95)";
 
-        {transform:"scale(1)"},
+            setTimeout(() => {
+                link.style.transform = "";
+            }, 120);
 
-        {transform:"scale(1.05)"},
-
-        {transform:"scale(1)"}
-
-    ],{
-
-        duration:1800
+        });
 
     });
 
-},2500);
+
+    /* -------------------------
+       Explore button effect
+    ------------------------- */
+
+    const exploreButton =
+        document.querySelector(".explore-btn");
+
+    if (exploreButton) {
+
+        exploreButton.addEventListener("click", () => {
+
+            exploreButton.style.transform =
+                "scale(0.96)";
+
+        });
+
+    }
+
+});
