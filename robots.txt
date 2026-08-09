@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rajputaadarshsingh24-bot.github.io/JEE-guide/sitemap.xml
