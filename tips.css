@@ -315,3 +315,38 @@ footer{
     }
 
 }
+
+.info-bar {
+    width: 80%;
+    max-width: 950px;
+    margin: 25px auto;
+    padding: 18px 25px;
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+
+    border-radius: 15px;
+
+    text-align: center;
+    line-height: 1.5;
+    font-size: 16px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+    transition: 0.3s;
+}
+
+.info-bar:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.13);
+}
+
+.info-bar a {
+    color: #ffd43b;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.info-bar a:hover {
+    text-decoration: underline;
+}
