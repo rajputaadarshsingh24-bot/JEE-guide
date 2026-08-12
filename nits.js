@@ -1,67 +1,104 @@
-// Navbar Animation
+/* =======================================
+   JEE GUIDE - NITS PAGE INTERACTION
+======================================= */
 
-const nav = document.querySelector("nav");
+document.addEventListener("DOMContentLoaded", () => {
 
-nav.style.opacity = "0";
-nav.style.transform = "translateY(-30px)";
+    /* -----------------------------------
+       1. NAVBAR ANIMATION
+    ----------------------------------- */
+    const nav = document.querySelector("nav");
 
-setTimeout(() => {
-    nav.style.transition = "0.8s";
-    nav.style.opacity = "1";
-    nav.style.transform = "translateY(0)";
-}, 200);
+    if (nav) {
+        nav.style.opacity = "0";
+        nav.style.transform = "translateY(-30px)";
 
+        setTimeout(() => {
+            nav.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+            nav.style.opacity = "1";
+            nav.style.transform = "translateY(0)";
+        }, 200);
 
-// Hero Animation
+        // Dynamic Navbar Background on Scroll
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 60) {
+                nav.style.background = "rgba(0, 0, 0, 0.75)";
+                nav.style.boxShadow = "0 6px 18px rgba(0, 0, 0, 0.3)";
+            } else {
+                nav.style.background = "rgba(255, 255, 255, 0.08)";
+                nav.style.boxShadow = "none";
+            }
+        });
+    }
 
-const hero = document.querySelector(".hero");
+    /* -----------------------------------
+       2. HERO ANIMATION
+    ----------------------------------- */
+    const hero = document.querySelector(".hero");
 
-hero.style.opacity = "0";
-hero.style.transform = "translateY(40px)";
+    if (hero) {
+        hero.style.opacity = "0";
+        hero.style.transform = "translateY(40px)";
 
-setTimeout(() => {
-    hero.style.transition = "0.8s";
-    hero.style.opacity = "1";
-    hero.style.transform = "translateY(0)";
-}, 400);
+        setTimeout(() => {
+            hero.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+            hero.style.opacity = "1";
+            hero.style.transform = "translateY(0)";
+        }, 400);
+    }
 
+    /* -----------------------------------
+       3. SCROLL REVEAL FOR SECTIONS & CARDS
+    ----------------------------------- */
+    const sections = document.querySelectorAll(
+        ".stat-card, .about, .info-bar, .event, .rank, .step, .branch, .fact"
+    );
 
-// Animate All Sections
+    sections.forEach(section => {
+        section.style.opacity = "0";
+        section.style.transform = "translateY(50px)";
+        section.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+    });
 
-const sections = document.querySelectorAll(
-".stat-card, .about, .event, .rank, .step, .branch, .fact"
-);
+    function revealSections() {
+        sections.forEach(section => {
+            const top = section.getBoundingClientRect().top;
+            if (top < window.innerHeight - 80) {
+                section.style.opacity = "1";
+                section.style.transform = "translateY(0)";
+            }
+        });
+    }
 
-sections.forEach((section, index) => {
+    window.addEventListener("scroll", revealSections);
+    revealSections(); // Trigger initial view check
 
-    section.style.opacity = "0";
-    section.style.transform = "translateY(60px)";
+    /* -----------------------------------
+       4. BACK BUTTON HOVER ANIMATION
+    ----------------------------------- */
+    const backBtn = document.querySelector(".back a");
 
-    setTimeout(() => {
+    if (backBtn) {
+        backBtn.addEventListener("mouseenter", () => {
+            backBtn.style.transform = "scale(1.08)";
+        });
 
-        section.style.transition = "0.8s ease";
+        backBtn.addEventListener("mouseleave", () => {
+            backBtn.style.transform = "scale(1)";
+        });
+    }
 
-        section.style.opacity = "1";
+    /* -----------------------------------
+       5. ACTIVE NAV LINK HIGHLIGHT
+    ----------------------------------- */
+    const currentPath = window.location.pathname.split("/").pop() || "nits.html";
+    const navLinks = document.querySelectorAll("nav a");
 
-        section.style.transform = "translateY(0)";
-
-    }, 700 + index * 120);
-
-});
-
-
-// Back Button Animation
-
-const backBtn = document.querySelector(".back a");
-
-backBtn.addEventListener("mouseenter", () => {
-
-    backBtn.style.transform = "scale(1.08)";
-
-});
-
-backBtn.addEventListener("mouseleave", () => {
-
-    backBtn.style.transform = "scale(1)";
-
+    navLinks.forEach(link => {
+        if (link.getAttribute("href") === currentPath) {
+            link.style.color = "#ffd54a";
+            link.style.fontWeight = "700";
+            link.setAttribute("aria-current", "page");
+        }
+    });
 });

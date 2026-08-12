@@ -1,224 +1,382 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
+/* ===========================
+   RESET & BASE STYLES
+=========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, Arial, sans-serif;
 }
 
-body{
-background:linear-gradient(135deg,#063b21,#0d7a46,#3cb371);
-color:white;
+html {
+    scroll-behavior: smooth;
 }
 
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 8%;
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(12px);
+body {
+    background: linear-gradient(135deg, #063b21, #0d7a46, #3cb371);
+    background-attachment: fixed;
+    color: #ffffff;
+    line-height: 1.6;
 }
 
-nav h2{
-font-size:32px;
-color:#7CFC98;
+/* Accessibility Focus Outline */
+a:focus-visible {
+    outline: 2px solid #7CFC98;
+    outline-offset: 3px;
 }
 
-nav ul{
-display:flex;
-list-style:none;
+/* ===========================
+   NAVBAR & BRANDING
+=========================== */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 8%;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-nav li{
-margin-left:30px;
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
 }
 
-nav a{
-text-decoration:none;
-color:white;
-transition:.3s;
+.nav-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 6px;
 }
 
-nav a:hover{
-color:#7CFC98;
+.brand-name {
+    font-size: 26px;
+    color: #7CFC98;
+    font-weight: 700;
 }
 
-.hero{
-text-align:center;
-padding:80px 20px;
+nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
 }
 
-.hero h1{
-font-size:55px;
-color:#7CFC98;
-margin-bottom:15px;
+nav ul li {
+    margin-left: 25px;
 }
 
-.hero p{
-font-size:22px;
+nav a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
-.stats,.branches,.facts{
-width:90%;
-max-width:1200px;
-margin:40px auto;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
+nav a:hover {
+    color: #7CFC98;
 }
 
-.stat-card,.about,.event,.rank,.branch,.fact{
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(10px);
-border-radius:20px;
-padding:25px;
-transition:.3s;
+/* ===========================
+   HERO SECTION
+=========================== */
+
+.hero {
+    text-align: center;
+    padding: 70px 20px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 4.5vw, 52px);
+    color: #7CFC98;
+    margin-bottom: 15px;
+    line-height: 1.25;
+}
+
+.hero p {
+    font-size: clamp(16px, 2vw, 21px);
+    opacity: 0.95;
+}
+
+/* ===========================
+   COMMON CARD STYLES
+=========================== */
+
+.stat-card,
+.about,
+.event,
+.rank,
+.branch,
+.fact {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 25px;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
 }
 
 .stat-card:hover,
 .event:hover,
+.fact:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 18px #7CFC98;
+    background: rgba(255, 255, 255, 0.14);
+}
+
+/* ===========================
+   GRID SECTIONS
+=========================== */
+
+.stats,
+.branches,
+.facts {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.stat-card {
+    text-align: center;
+}
+
+.stat-card h1 {
+    font-size: 50px;
+    color: #7CFC98;
+}
+
+.stat-card p {
+    font-weight: 500;
+}
+
+/* ===========================
+   ABOUT SECTION & LINKS
+=========================== */
+
+.about {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.about h2 {
+    color: #7CFC98;
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+
+.about p {
+    line-height: 1.8;
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+.about p:last-child {
+    margin-bottom: 0;
+}
+
+.about a {
+    color: #7CFC98;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.about a:hover {
+    color: #ffffff;
+}
+
+/* ===========================
+   SECTION TITLES
+=========================== */
+
+.section-title {
+    text-align: center;
+    font-size: clamp(26px, 3.5vw, 38px);
+    margin: 60px 0 30px;
+    color: #7CFC98;
+}
+
+/* ===========================
+   TIMELINE & RANKING
+=========================== */
+
+.timeline,
+.ranking {
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+}
+
+.event {
+    border-left: 5px solid #7CFC98;
+    margin-bottom: 20px;
+}
+
+.event h3 {
+    color: #7CFC98;
+    margin-bottom: 6px;
+}
+
+.rank {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 17px;
+}
+
 .rank:hover,
-.branch:hover,
-.fact:hover{
-transform:translateY(-8px);
-box-shadow:0 0 18px #7CFC98;
+.branch:hover {
+    background: #7CFC98;
+    color: #000000;
+    transform: translateY(-4px);
+    box-shadow: 0 0 15px #7CFC98;
 }
 
-.stat-card{
-text-align:center;
+/* ===========================
+   FLOW STEPS
+=========================== */
+
+.flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 50px;
 }
 
-.stat-card h1{
-font-size:55px;
-color:#7CFC98;
+.step {
+    width: 320px;
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    text-align: center;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 17px;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
-.about{
-width:90%;
-max-width:1200px;
-margin:auto;
+.step:hover {
+    background: #7CFC98;
+    color: #000000;
+    transform: scale(1.05);
 }
 
-.about h2{
-color:#7CFC98;
-margin-bottom:15px;
+.arrow {
+    font-size: 30px;
+    color: #7CFC98;
 }
 
-.about p{
-line-height:1.8;
+/* ===========================
+   FACTS & BRANCHES
+=========================== */
+
+.branch {
+    text-align: center;
+    font-weight: 600;
+    cursor: default;
 }
 
-.section-title{
-text-align:center;
-font-size:40px;
-margin:60px 0 30px;
-color:#7CFC98;
+.fact h3 {
+    color: #7CFC98;
+    margin-bottom: 8px;
 }
 
-.timeline,.ranking{
-width:90%;
-max-width:900px;
-margin:auto;
+/* ===========================
+   BACK BUTTON
+=========================== */
+
+.back {
+    text-align: center;
+    margin: 50px 0 30px;
 }
 
-.event{
-border-left:5px solid #7CFC98;
-margin-bottom:20px;
+.back a {
+    display: inline-block;
+    background: #7CFC98;
+    color: #000000;
+    padding: 15px 35px;
+    text-decoration: none;
+    border-radius: 40px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
-.rank{
-display:flex;
-justify-content:space-between;
-margin-bottom:15px;
+.back a:hover {
+    background: #ffffff;
+    transform: scale(1.08);
+    box-shadow: 0 0 20px #7CFC98;
 }
 
-.rank:hover,
-.branch:hover{
-background:#7CFC98;
-color:black;
+/* ===========================
+   FOOTER
+=========================== */
+
+footer {
+    text-align: center;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.3);
+    margin-top: 40px;
+    font-size: 14px;
 }
 
-.flow{
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:15px;
-margin-bottom:50px;
-}
+/* ===========================
+   RESPONSIVE DESIGN
+=========================== */
 
-.step{
-width:320px;
-padding:18px;
-background:rgba(255,255,255,.08);
-text-align:center;
-border-radius:15px;
-transition:.3s;
-}
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 15px;
+        gap: 10px;
+    }
 
-.step:hover{
-background:#7CFC98;
-color:black;
-}
+    .brand-name {
+        font-size: 22px;
+    }
 
-.arrow{
-font-size:35px;
-color:#7CFC98;
-}
+    .nav-logo {
+        width: 35px;
+        height: 35px;
+    }
 
-.back{
-text-align:center;
-margin:50px 0;
-}
+    nav ul {
+        margin-top: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
-.back a{
-background:#7CFC98;
-color:black;
-padding:15px 35px;
-text-decoration:none;
-border-radius:40px;
-font-weight:bold;
-transition:.3s;
-}
+    nav ul li {
+        margin: 5px 12px;
+    }
 
-.back a:hover{
-background:white;
-}
+    .rank {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
 
-footer{
-text-align:center;
-padding:25px;
-background:rgba(255,255,255,.08);
-margin-top:30px;
-}
-
-@media(max-width:768px){
-
-nav{
-flex-direction:column;
-}
-
-nav ul{
-margin-top:20px;
-flex-wrap:wrap;
-justify-content:center;
-}
-
-nav li{
-margin:10px;
-}
-
-.hero h1{
-font-size:38px;
-}
-
-.rank{
-flex-direction:column;
-gap:10px;
-text-align:center;
-}
-
-.step{
-width:90%;
-}
-
+    .step {
+        width: 90%;
+    }
 }

@@ -1,95 +1,98 @@
-// ===============================
-// IIITs Page Animations
-// ===============================
+/* =======================================
+   JEE GUIDE - IIITS PAGE INTERACTION
+======================================= */
 
-// Navbar Animation
+document.addEventListener("DOMContentLoaded", () => {
 
-const nav = document.querySelector("nav");
+    /* -----------------------------------
+       1. NAVBAR SCROLL EFFECT & ENTRANCE
+    ----------------------------------- */
+    const nav = document.querySelector("nav");
 
-nav.style.opacity = "0";
-nav.style.transform = "translateY(-30px)";
+    if (nav) {
+        nav.style.opacity = "0";
+        nav.style.transform = "translateY(-30px)";
 
-setTimeout(() => {
-    nav.style.transition = "0.8s ease";
-    nav.style.opacity = "1";
-    nav.style.transform = "translateY(0)";
-}, 200);
+        setTimeout(() => {
+            nav.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+            nav.style.opacity = "1";
+            nav.style.transform = "translateY(0)";
+        }, 150);
 
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 60) {
+                nav.style.background = "rgba(5, 25, 55, 0.9)";
+                nav.style.boxShadow = "0 6px 18px rgba(0, 0, 0, 0.35)";
+            } else {
+                nav.style.background = "rgba(5, 25, 55, 0.65)";
+                nav.style.boxShadow = "none";
+            }
+        });
+    }
 
-// Hero Animation
+    /* -----------------------------------
+       2. HERO ENTRANCE & GLOW ANIMATION
+    ----------------------------------- */
+    const hero = document.querySelector(".hero");
 
-const hero = document.querySelector(".hero");
+    if (hero) {
+        hero.style.opacity = "0";
+        hero.style.transform = "translateY(30px)";
 
-hero.style.opacity = "0";
-hero.style.transform = "translateY(40px)";
+        setTimeout(() => {
+            hero.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+            hero.style.opacity = "1";
+            hero.style.transform = "translateY(0)";
+        }, 300);
+    }
 
-setTimeout(() => {
-    hero.style.transition = "0.8s ease";
-    hero.style.opacity = "1";
-    hero.style.transform = "translateY(0)";
-}, 400);
+    const title = document.querySelector(".hero h1");
+    if (title) {
+        setInterval(() => {
+            title.style.textShadow = "0 0 10px #00e5ff, 0 0 20px #00e5ff";
+            setTimeout(() => {
+                title.style.textShadow = "0 0 4px #00e5ff";
+            }, 800);
+        }, 2200);
+    }
 
+    /* -----------------------------------
+       3. SCROLL REVEAL ANIMATIONS
+    ----------------------------------- */
+    const elements = document.querySelectorAll(
+        ".stat-card, .about, .event, .rank, .step, .branch, .fact"
+    );
 
-// Animate Every Card/Section
+    elements.forEach(element => {
+        element.style.opacity = "0";
+        element.style.transform = "translateY(40px)";
+        element.style.transition = "opacity 0.7s ease, transform 0.7s ease";
+    });
 
-const elements = document.querySelectorAll(
-".stat-card, .about, .event, .rank, .step, .branch, .fact"
-);
+    function revealOnScroll() {
+        elements.forEach(element => {
+            const top = element.getBoundingClientRect().top;
+            if (top < window.innerHeight - 80) {
+                element.style.opacity = "1";
+                element.style.transform = "translateY(0)";
+            }
+        });
+    }
 
-elements.forEach((element, index) => {
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll(); // Trigger initial view check
 
-    element.style.opacity = "0";
-    element.style.transform = "translateY(60px)";
+    /* -----------------------------------
+       4. ACTIVE NAVIGATION LINK HIGHLIGHT
+    ----------------------------------- */
+    const currentPath = window.location.pathname.split("/").pop() || "iiits.html";
+    const navLinks = document.querySelectorAll("nav a");
 
-    setTimeout(() => {
-
-        element.style.transition = "0.8s ease";
-
-        element.style.opacity = "1";
-
-        element.style.transform = "translateY(0)";
-
-    }, 700 + index * 120);
-
+    navLinks.forEach(link => {
+        if (link.getAttribute("href") === currentPath) {
+            link.style.color = "#00e5ff";
+            link.style.fontWeight = "700";
+            link.setAttribute("aria-current", "page");
+        }
+    });
 });
-
-
-// Back Button Hover Animation
-
-const backButton = document.querySelector(".back a");
-
-backButton.addEventListener("mouseenter", () => {
-
-    backButton.style.transform = "scale(1.08)";
-    backButton.style.boxShadow = "0 0 20px cyan";
-
-});
-
-backButton.addEventListener("mouseleave", () => {
-
-    backButton.style.transform = "scale(1)";
-    backButton.style.boxShadow = "none";
-
-});
-
-
-// Smooth Scrolling
-
-document.documentElement.style.scrollBehavior = "smooth";
-
-
-// Glowing Hero Title
-
-const title = document.querySelector(".hero h1");
-
-setInterval(() => {
-
-    title.style.textShadow = "0 0 10px cyan, 0 0 20px cyan";
-
-    setTimeout(() => {
-
-        title.style.textShadow = "0 0 5px cyan";
-
-    }, 800);
-
-}, 1800);

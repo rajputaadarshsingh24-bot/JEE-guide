@@ -1,101 +1,151 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
-    scroll-behavior:smooth;
+/* ===========================
+   RESET & BASE STYLES
+=========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, Arial, sans-serif;
+    scroll-behavior: smooth;
 }
 
-body{
-    background:linear-gradient(135deg,#0f4c75,#3282b8,#5bc0be);
-    color:white;
+body {
+    background: linear-gradient(135deg, #0f4c75, #3282b8, #5bc0be);
+    background-attachment: fixed;
+    color: #ffffff;
+    line-height: 1.6;
 }
 
-/* ================= NAVBAR ================= */
-
-nav{
-    position:sticky;
-    top:0;
-    z-index:1000;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 8%;
-    background:rgba(0,0,0,.2);
-    backdrop-filter:blur(10px);
+/* Accessibility Focus Outline */
+a:focus-visible,
+.check:focus-visible {
+    outline: 2px solid #90ee90;
+    outline-offset: 3px;
 }
 
-nav h2{
-    font-size:30px;
-    color:#90ee90;
+/* ===========================
+   NAVBAR & BRANDING
+=========================== */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 8%;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-nav ul{
-    display:flex;
-    list-style:none;
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
 }
 
-nav li{
-    margin-left:30px;
+.nav-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 6px;
 }
 
-nav a{
-    text-decoration:none;
-    color:white;
-    transition:.3s;
+.brand-name {
+    font-size: 26px;
+    color: #90ee90;
+    font-weight: 700;
 }
 
-nav a:hover{
-    color:#90ee90;
+nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
 }
 
-/* ================= HERO ================= */
-
-.hero{
-    height:90vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:20px;
+nav ul li {
+    margin-left: 25px;
 }
 
-.hero h1{
-    font-size:65px;
-    margin-bottom:20px;
+nav a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
-.hero p{
-    font-size:22px;
-    max-width:700px;
-    margin-bottom:40px;
+nav a:hover {
+    color: #90ee90;
 }
 
-.hero-btn{
-    text-decoration:none;
-    color:#0f4c75;
-    background:#90ee90;
-    padding:15px 35px;
-    border-radius:40px;
-    font-weight:bold;
-    transition:.3s;
+/* ===========================
+   HERO SECTION
+=========================== */
+
+.hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px 40px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.hero-btn:hover{
-    background:white;
-    transform:translateY(-5px);
+.hero h1 {
+    font-size: clamp(32px, 4.5vw, 58px);
+    margin-bottom: 20px;
+    line-height: 1.25;
+    color: #ffffff;
 }
 
-/* ================= TITLES ================= */
-
-.section-title{
-    text-align:center;
-    font-size:40px;
-    margin:70px 0 35px;
+.hero p {
+    font-size: clamp(16px, 2vw, 21px);
+    max-width: 750px;
+    margin-bottom: 40px;
+    opacity: 0.95;
 }
 
-/* ================= COMMON CARD ================= */
+.hero-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: #0f4c75;
+    background: #90ee90;
+    padding: 15px 35px;
+    border-radius: 40px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-btn:hover {
+    background: #ffffff;
+    transform: translateY(-5px);
+}
+
+/* ===========================
+   SECTION TITLES
+=========================== */
+
+.section-title {
+    text-align: center;
+    font-size: clamp(26px, 3.5vw, 40px);
+    margin: 70px 0 35px;
+    color: #90ee90;
+}
+
+/* ===========================
+   COMMON CARD STYLES
+=========================== */
 
 .rule,
 .time,
@@ -104,11 +154,13 @@ nav a:hover{
 .success,
 .mistake,
 .check,
-.quote{
-    background:rgba(255,255,255,.12);
-    backdrop-filter:blur(10px);
-    border-radius:18px;
-    transition:.35s;
+.quote {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
 }
 
 .rule:hover,
@@ -117,236 +169,249 @@ nav a:hover{
 .box:hover,
 .success:hover,
 .mistake:hover,
-.check:hover{
-    transform:translateY(-8px);
+.check:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
 }
 
-/* ================= RULES ================= */
+/* ===========================
+   RULES GRID
+=========================== */
 
-.rules{
-    width:90%;
-    max-width:1200px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
+.rules {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
 }
 
-.rule{
-    padding:30px;
-    text-align:center;
+.rule {
+    padding: 30px;
+    text-align: center;
 }
 
-.rule h3{
-    margin-bottom:15px;
-    color:#90ee90;
+.rule h3 {
+    margin-bottom: 15px;
+    color: #90ee90;
+    font-size: 20px;
 }
 
-.rule p{
-    line-height:1.7;
+.rule p {
+    line-height: 1.7;
+    font-size: 16px;
 }
 
-/* ================= ROUTINE ================= */
+/* ===========================
+   FORMULA SECTION
+=========================== */
 
-.routine{
-    width:90%;
-    max-width:900px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:180px 1fr;
-    gap:20px;
-}
-
-.time,
-.activity{
-    padding:20px;
-    text-align:center;
-}
-
-/* ================= FORMULA ================= */
-
-.formula{
-    width:90%;
-    max-width:1200px;
-    margin:auto;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    align-items:center;
-    gap:15px;
+.formula {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
 }
 
 .box,
-.success{
-    padding:20px 30px;
-    font-weight:bold;
-    text-align:center;
+.success {
+    padding: 20px 30px;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
 }
 
-.success{
-    background:#90ee90;
-    color:#0f4c75;
+.success {
+    background: #90ee90;
+    color: #0f4c75;
+    border: none;
 }
 
 .plus,
-.equal{
-    font-size:40px;
-    font-weight:bold;
+.equal {
+    font-size: 38px;
+    font-weight: bold;
+    color: #90ee90;
 }
 
-/* ================= MISTAKES ================= */
+/* ===========================
+   MISTAKES GRID
+=========================== */
 
-.mistakes{
-    width:90%;
-    max-width:1200px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+.mistakes {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
 }
 
-.mistake{
-    padding:25px;
-    text-align:center;
+.mistake {
+    padding: 25px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 500;
 }
 
-/* ================= QUOTE ================= */
+/* ===========================
+   QUOTE SECTION
+=========================== */
 
-.quote{
-    width:90%;
-    max-width:900px;
-    margin:70px auto;
-    padding:40px;
-    text-align:center;
-    border-left:6px solid #90ee90;
+.quote {
+    width: 90%;
+    max-width: 900px;
+    margin: 70px auto;
+    padding: 40px;
+    text-align: center;
+    border-left: 6px solid #90ee90;
+    transition: box-shadow 0.4s ease;
 }
 
-.quote h2{
-    line-height:1.7;
-    font-style:italic;
+.quote h2 {
+    line-height: 1.7;
+    font-style: italic;
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 500;
 }
 
-/* ================= CHECKLIST ================= */
+/* ===========================
+   CHECKLIST
+=========================== */
 
-.checklist{
-    width:90%;
-    max-width:900px;
-    margin:auto;
-    display:grid;
-    gap:18px;
+.checklist {
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+    display: grid;
+    gap: 18px;
 }
 
-.check{
-    padding:22px;
-    font-size:18px;
+.check {
+    padding: 22px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
-/* ================= BACK BUTTON ================= */
-
-.back{
-    text-align:center;
-    margin:60px 0;
-}
-
-.back a{
-    text-decoration:none;
-    background:#90ee90;
-    color:#0f4c75;
-    padding:15px 35px;
-    border-radius:40px;
-    font-weight:bold;
-    transition:.3s;
-}
-
-.back a:hover{
-    background:white;
-}
-
-/* ================= FOOTER ================= */
-
-footer{
-    text-align:center;
-    padding:25px;
-    background:rgba(0,0,0,.2);
-    margin-top:40px;
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:768px){
-
-    nav{
-        flex-direction:column;
-    }
-
-    nav ul{
-        margin-top:20px;
-        flex-wrap:wrap;
-        justify-content:center;
-    }
-
-    nav li{
-        margin:10px;
-    }
-
-    .hero h1{
-        font-size:42px;
-    }
-
-    .hero p{
-        font-size:18px;
-    }
-
-    .section-title{
-        font-size:30px;
-    }
-
-    .routine{
-        grid-template-columns:1fr;
-    }
-
-    .formula{
-        flex-direction:column;
-    }
-
-    .plus,
-    .equal{
-        transform:rotate(90deg);
-    }
-
-}
+/* ===========================
+   INFO BAR (RELATED LINKS)
+=========================== */
 
 .info-bar {
-    width: 80%;
+    width: 90%;
     max-width: 950px;
     margin: 25px auto;
-    padding: 18px 25px;
-
+    padding: 22px 28px;
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
-
-    border-radius: 15px;
-
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
     text-align: center;
-    line-height: 1.5;
-    font-size: 16px;
-
+    line-height: 1.7;
+    font-size: 17px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-
-    transition: 0.3s;
+    transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .info-bar:hover {
     transform: translateY(-4px);
-    background: rgba(255, 255, 255, 0.13);
+    background: rgba(255, 255, 255, 0.14);
 }
 
 .info-bar a {
     color: #ffd43b;
     font-weight: bold;
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 .info-bar a:hover {
-    text-decoration: underline;
+    color: #ffffff;
+}
+
+/* ===========================
+   BACK BUTTON
+=========================== */
+
+.back {
+    text-align: center;
+    margin: 60px 0 30px;
+}
+
+.back a {
+    display: inline-block;
+    text-decoration: none;
+    background: #90ee90;
+    color: #0f4c75;
+    padding: 15px 35px;
+    border-radius: 40px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.back a:hover {
+    background: #ffffff;
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(144, 238, 144, 0.8);
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+footer {
+    text-align: center;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.3);
+    margin-top: 40px;
+    font-size: 14px;
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+=========================== */
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 15px;
+        gap: 10px;
+    }
+
+    .brand-name {
+        font-size: 22px;
+    }
+
+    .nav-logo {
+        width: 35px;
+        height: 35px;
+    }
+
+    nav ul {
+        margin-top: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 5px 12px;
+    }
+
+    .formula {
+        flex-direction: column;
+    }
+
+    .plus,
+    .equal {
+        transform: rotate(90deg);
+    }
 }
